@@ -14,48 +14,57 @@ def print_board(board):
         print()
 
 def check_play(play, board, turn):
-    if play in range(1, 4):
-        column = board[0]
-        if play in column:
-            played_index = column.index(play)
-            column[played_index] = turn
-            board[0] = column
-        else:
-            while play not in column:
-                print("Invalid move")
-                play = int(input(f"{turn}'s turn :"))
+    if play in range(1, 4) and play in board[0]:
+        played_index = board[0].index(play)
+        board[0][played_index] = turn
+    elif play in range(1, 4) and play not in board[0]:
+        while play not in board[0] and play not in board[1] and play not in board[2]:
+            print("Invalid move")
+            play = int(input(f"{turn}'s turn :"))
 
-            played_index = column.index(play)
-            column[played_index] = turn
-            board[0] = column
-    elif play in range(4, 7):
-        column = board[1]
-        if play in column:
-            played_index = column.index(play)
-            column[played_index] = turn
-            board[1] = column
+        if play in board[0]:
+            played_index = board[0].index(play)
+            board[0][played_index] = turn
+        elif play in board[1]:
+            played_index = board[1].index(play)
+            board[1][played_index] = turn
         else:
-            while play not in column:
-                print("Invalid move")
-                play = int(input(f"{turn}'s turn :"))
+            played_index = board[2].index(play)
+            board[2][played_index] = turn
+    elif play in range(4, 7) and play in board[1]:
+        played_index = board[1].index(play)
+        board[1][played_index] = turn
+    elif play in range(4, 7) and play not in board[1]:
+        while play not in board[0] and play not in board[1] and play not in board[2]:
+            print("Invalid move")
+            play = int(input(f"{turn}'s turn :"))
 
-            played_index = column.index(play)
-            column[played_index] = turn
-            board[1] = column
-    else:
-        column = board[2]
-        if play in column:
-            played_index = column.index(play)
-            column[played_index] = turn
-            board[2] = column
+        if play in board[0]:
+            played_index = board[0].index(play)
+            board[0][played_index] = turn
+        elif play in board[1]:
+            played_index = board[1].index(play)
+            board[1][played_index] = turn
         else:
-            while play not in column:
-                print("Invalid move")
-                play = int(input(f"{turn}'s turn :"))
+            played_index = board[2].index(play)
+            board[2][played_index] = turn
+    elif play in range(7, 10) and play in board[2]:
+        played_index = board[2].index(play)
+        board[2][played_index] = turn
+    elif play in range(7, 10) and play not in board[2]:
+        while play not in board[0] and play not in board[1] and play not in board[2]:
+            print("Invalid move")
+            play = int(input(f"{turn}'s turn :"))
 
-            played_index = column.index(play)
-            column[played_index] = turn
-            board[2] = column
+        if play in board[0]:
+            played_index = board[0].index(play)
+            board[0][played_index] = turn
+        elif play in board[1]:
+            played_index = board[1].index(play)
+            board[1][played_index] = turn
+        else:
+            played_index = board[2].index(play)
+            board[2][played_index] = turn
 
 def update_board(board, play):
     if play in range(1, 4):
